@@ -31,22 +31,19 @@
 ## 1. Inleiding
 
 ### Doel van de opdracht
-Het doel van dit onderzoek is het verkennen en toepassen van het functionele programmeerparadigma door middel van een uitdagende implementatie in de gekozen programmeertaal. Dit verslag beschrijft de theoretische basis, de gekozen challenge en de geleerde lessen.
+Het doel van dit onderzoek is het verkennen en toepassen van het functionele programmeerparadigma door middel van een uitdagende implementatie in de van mij gekozen programmeertaal. Dit verslag beschrijft de theoretische basis, de gekozen challenge en de geleerde lessen.
 
 ### Gekozen Programmeertaal
-Voor dit onderzoek is gekozen voor **Elixir**.
+Voor deze opdracht is gekozen voor **Elixir**.
 
-Ik heb gekozen voor elixir door de toepasbaarheid buiten deze opdracht en course om. Als ik iets nieuws moet leren waarom niet iets waar ik ook nog profijt kan hebben in de toekomst.
+Ik heb gekozen voor Elixir vanwege de toepasbaarheid buiten deze opdracht en course. Als ik iets nieuws moet leren, kies ik liever iets waar ik in de toekomst ook profijt van kan hebben.
 
-Daarnaast is Elixir makkelijker op te pakken dan andere talen en spreekt het mij ook aan dat het evt gebruikt kan worden voor webdevelopment.
+Daarnaast is Elixir relatief makkelijk op te pakken in vergelijking met andere talen en spreekt het mij aan dat het ook gebruikt kan worden voor webdevelopment.
 
-Verder is Elixir ook een uitstekende kanidaat om functionele concepten te ontdekken en te leren. Elixir biedt namelijk de volgende concpten aan die mij erg interrsant lijken.
-
-- iummutabilty, van deze term heb ik al eerder gehoord maar nog niet met een taal gewerkt waar alles immutable is.
-- Recursie, Dit is meerdere keren aanbod gekomen in de lessen. Een erg vet concept en vereist ook een hele andere manier van denken. Nu kan je ook for loops gebruiken in Elixir dus niet puur functioneel maar daar blijf ik dus ook vanaf voor deze opdracht
-
--Pattern matching, Dit wekt mijn grootste interresse omdat dit concept geheel nieuw voor mij is en wil het graag gebruiken in mijn code.
-
+Verder is Elixir een uitstekende keuze om functionele concepten te ontdekken en te leren. De taal biedt namelijk een aantal concepten die ik erg interessant vind:
+- Immutability: ik heb deze term al eerder gehoord, maar nog niet gewerkt met een taal waarin alles immutable is.
+- Recursie: dit concept is meerdere keren voorbij gekomen in de lessen. Het is erg interessant omdat het een compleet andere manier van denken vereist. In Elixir kun je wel for-loops gebruiken, dus het is niet puur functioneel, maar ik blijf in deze opdracht bij de recursieve aanpak.
+- Pattern matching: dit concept wekt mijn grootste interesse, omdat het volledig nieuw voor mij is. Ik wil het graag actief toepassen in mijn code.
 
 
 ## 2. Onderzoek
@@ -70,7 +67,7 @@ IO.inspect(y) # => 7
 ```
 
 #### Higher-Order Functions 
-Een hogere-orde functie is een functie die met functies zelf kan werken. Dat betekent dat zo’n functie óf een andere functie als argument krijgt, óf zelf een functie teruggeeft. Dit idee is fundamenteel in functioneel programmeren, omdat het functies tot eerste-klasse waarden maakt: je kunt ze net zo behandelen als getallen of lijsten. Je kunt ze doorgeven, opslaan in variabelen of teruggeven uit een andere functie.
+Een hogere-orde functie is een functie die met functies zelf kan werken. Dat betekent dat zo’n functie of een andere functie als argument krijgt, of zelf een functie teruggeeft. Dit idee is fundamenteel in functioneel programmeren, omdat het functies tot eerste-klasse waarden maakt je kunt ze net zo behandelen als getallen of lijsten. Je kunt ze doorgeven, opslaan in variabelen of teruggeven uit een andere functie.
 
 Een simpel voorbeeld is Enum.map in Elixir. Deze functie neemt een functie en een lijst en past de functie toe op elk element van die lijst. Bijvoorbeeld:
 
@@ -80,8 +77,6 @@ Enum.map([1, 2, 3], fn x -> x + 1 end)
 ```
 
 Hier is fn x -> x + 1 end de functie die als argument wordt meegegeven. map zelf weet niet wat er moet gebeuren met de elementen, maar gebruikt de meegegeven functie om dat te bepalen.
-
-Dit maakt hogere-orde functies krachtig, omdat je algemene patronen (zoals “iets doen met elk element in een lijst”) kunt hergebruiken, zonder de logica telkens opnieuw te schrijven. Je geeft alleen nog aan wat er moet gebeuren, niet hoe je het moet programmeren.
 
 #### Recursie
 Recursie is een techniek waarbij een functie zichzelf aanroept om een probleem op te lossen. In functionele talen zoals Elixir is recursie een belangrijk alternatief voor loops (zoals for of while in imperatieve talen), omdat variabelen onveranderlijk zijn. Recursie werkt vaak door een base case te definiëren waarin de functie stopt, en een recursieve stap die het probleem kleiner maakt en de functie opnieuw aanroept.
@@ -94,17 +89,16 @@ end
 
 IO.inspect(Math.sum(5)) # => 15
 ```
-Recursie is fundamenteel in Elixir en andere functionele talen, omdat het herhaling en iteratie zonder bijwerkingen mogelijk maakt, en het goed combineert met immutable data en hogere-orde functies.
+Recursie is fundamenteel in Elixir en andere functionele talen, omdat het herhaling en iteratie zonder bijwerkingen mogelijk maakt.
 
 #### Pattern matching
 
 Pattern matching is een kernconcept in Elixir waarmee je data kunt ontleden en vergelijken. In plaats van traditionele vergelijkingen gebruik je een patroon aan de linkerkant van = en een waarde aan de rechterkant. Als de waarde overeenkomt met het patroon, worden variabelen automatisch gevuld. Pattern matching werkt met variabelen, tuples, lijsten, maps, en kan ook gebruikt worden in functies om verschillende gevallen af te handelen. Het maakt code korter, expressiever en minder foutgevoelig, en is vaak een alternatief voor if/else of case-constructies.
 ```elixir
 defmodule Math do
-  # base case: lege lijst
+
   def sum([]), do: 0
 
-  # recursie: eerste element + som van de rest
   def sum([head | tail]), do: head + sum(tail)
 end
 
@@ -144,14 +138,84 @@ In imperatieve talen kun je gewoon een lijst aanpassen en met een loop door alle
 - Het beperken van de oplossing tot imperatieve of objectgeoriënteerde constructies.
 
 
----
+## 4. Implementatie
+De implementatie is opgezet rond een recursieve functie. Het algoritme kent een base case die stopt zodra de queue leeg is en een recursieve case die telkens de kortste afstand selecteert en de bijbehorende buren verwerkt.
+
+Daarnaast heb ik geprobeerd een priority queue te gebruiken, aangezien dit een essentieel onderdeel van Dijkstra is. Je moet immers steeds het knooppunt met de kleinste afstand als eerste verwerken. Hiervoor heb ik gebruikgemaakt van de hulpmiddelen die Elixir biedt.
+
+In de opdracht wordt verwezen naar lazy evaluation, maar het Dijkstra-algoritme staat juist bekend als een eager algoritme. Om het kortste pad te bepalen moeten uiteindelijk alle knopen zijn bezocht. Daarom heb ik het algoritme bewust eager uitgewerkt.
+
+### Gebruikte Functionele Concepten
+
+#### Pattern Matching
+
+Pattern matching wordt gebruikt om direct te onderscheiden tussen de base case en de recursieve case. Daarnaast maakt het de code compacter door direct tuples te kunnen “uitpakken”.
+
+##### Base case: als de queue leeg is, stopt de recursie
+```elixir
+defp dijkstra(_graph, distances, []), do: distances
+```
+##### Uitpakken van tuple {dist, node}
+```elixir
+{dist, node} = Enum.min_by(queue, fn {d, _} -> d end)
+```
+#### Recursie
+In plaats van loops te gebruiken, wordt de functie dijkstra/3 telkens opnieuw aangeroepen met nieuwe parameters. Hierdoor blijft de implementatie puur en functioneel.
+
+##### Recursieve oproep met bijgewerkte parameters
+```elixir
+dijkstra(graph, distances, queue)
+```
+
+#### Immutability
+Datastructuren worden nooit aangepast. In plaats daarvan wordt er steeds een nieuwe versie gemaakt, bijvoorbeeld door Map.put/3 of het toevoegen van een element aan een lijst.
+
+ Maak een nieuwe versie van distances met de kortere afstand:
+```elixir
+{Map.put(distances, neighbor, new_dist), [{new_dist, neighbor} | queue]}
+```
+#### Higher-Order Functies
+
+Met Enum.reduce/3 wordt er een lijst buren verwerkt. Elke buur wordt verwerkt in een pure functie, die een nieuwe versie van distances en queue teruggeeft.
+```elixir
+{distances, queue} =
+  Enum.reduce(neighbors, {distances, queue}, fn {neighbor, cost}, {distances, queue} ->
+    new_dist = dist + cost
+    current_dist = distances[neighbor]
+
+    if current_dist == @infinity or new_dist < current_dist do
+      {Map.put(distances, neighbor, new_dist), [{new_dist, neighbor} | queue]}
+    else
+      {distances, queue}
+    end
+  end)
+```
 
 
+## 5. Reflectie
+Mijn belangrijkste leerpunten over het functionele paradigma zijn:
 
+### Denkwijze:
+De functionele manier van programmeren dwingt je om anders te denken dan bij imperatief of objectgeoriënteerd programmeren. In plaats van “stap voor stap” code te schrijven die variabelen muteert, werk je met pure functies die onveranderlijke data transformeren. Dit betekende voor mij dat ik continu moest nadenken over data doorgeven en teruggeven in plaats van data aanpassen.
+
+#### Voordelen:
+- Immutability maakte de code betrouwbaarder omdat data niet onverwacht kon veranderen, was de logica beter voorspelbaar.
+- Pure functies waren makkelijker te testen, omdat de output volledig afhankelijk is van de input.
+- Door het gebruik van functies zoals Enum.reduce en Enum.min_by werd de implementatie compacter en leesbaarder dan wanneer ik zelf handmatig lussen had moeten schrijven.
+
+#### Uitdagingen:
+Het lastigste vond ik het wennen aan recursie in plaats van loops. Waar ik normaal een for- of while-loop zou schrijven, moest ik nu de oplossing opdelen in een base case en een recursieve case. 
+
+### Wat Werkte Goed
+
+Het gebruik van Enum.reduce werkte erg goed om over de buren van een knoop heen te lopen. Het combineerde de update van de afstanden en de queue op een nette manier in één pure functie. Daardoor bleef de code overzichtelijk en was duidelijk hoe de datastructuren transformeerden bij elke stap van het algoritme.
+
+### Wat Werkte Niet
+
+Het lastigste onderdeel was het implementeren van een priority queue in Elixir. In een imperatieve taal zou je gewoon een heap of een ingebouwde datastructuur gebruiken, maar in functioneel Elixir moest ik een manier vinden om de queue telkens als nieuwe lijst of tuple bij te werken zonder mutatie. Waar ik normaal een eenvoudige while (queue not empty) zou schrijven, moest ik nu leren denken in termen van herhaalde functie aanroepen met aangepaste argumenten. 
 
 ## 7. Bronvermelding
 
-Vermeld hier alle gebruikte bronnen, inclusief boeken, websites, artikelen, en in het bijzonder het gebruik van Generatieve AI.
 
 ### Literatuur/Websites
 [Is elixir still worth learning](https://www.reddit.com/r/elixir/comments/1bi3ibi/is_elixir_still_worth_learning/)
@@ -165,7 +229,7 @@ Vermeld hier alle gebruikte bronnen, inclusief boeken, websites, artikelen, en i
 Om snelle informatie te verkrijgen over de verschillende talen. En om uiteindelijk meer informatie te krijgen over Elixir zelf en functioneel programmeren
 
 **Verantwoording & Analyse van Output:** 
-Door bijbehorende op te vragen van betrouwbare sites / auteurs zo kon ik de informatie achterhalen. Chatgpt vervulde alleen een samenvattende rol.
+Door bijbehorende bronnen op te vragen van betrouwbare sites / auteurs zo kon ik de informatie achterhalen die in de output verwerkt zit. Chatgpt vervulde eigenlijk alleen een samenvattende rol.
 
 **Conversatielinks:**
 
