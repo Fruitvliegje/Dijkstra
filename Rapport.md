@@ -17,16 +17,34 @@
 ---
 
 ## Inhoudsopgave
-
-1. [Inleiding](#inleiding)
-2. [Onderzoek](#onderzoek)
-3. [Challenge](#challenge)
-4. [Implementatie](#implementatie)
-5. [Reflectie](#reflectie)
-6. [Conclusie](#conclusie)
-7. [Bronvermelding](#bronvermelding)
-
----
+1.  [Inleiding](#1-inleiding)
+      * [Doel van de opdracht](#doel-van-de-opdracht)
+      * [Gekozen Programmeertaal](#gekozen-programmeertaal)
+2.  [Onderzoek](#2-onderzoek)
+      * [Functionele Concepten en Kenmerken van Elixir](#functionele-concepten-en-kenmerken-van-elixir)
+          * [Pure Functies](#pure-functies)
+          * [Immutability](#immutability)
+          * [Higher-Order Functions](#higher-order-functions)
+          * [Recursie](#recursie)
+          * [Pattern matching](#pattern-matching)
+3.  [Challenge](#3-challenge)
+      * [Beschrijving van de Bedachte Challenge](#beschrijving-van-de-bedachte-challenge)
+      * [Waarom de Challenge Uitdagend Is](#waarom-de-challenge-uitdagend-is)
+4.  [Implementatie](#4-implementatie)
+      * [Gebruikte Functionele Concepten](#gebruikte-functionele-concepten)
+          * [Pattern Matching](#pattern-matching-1)
+          * [Recursie](#recursie-1)
+          * [Immutability](#immutability-1)
+          * [Higher-Order Functies](#higher-order-functies)
+5.  [Reflectie](#5-reflectie)
+      * [Denkwijze](#denkwijze)
+      * [Wat werkte goed](#wat-werkte-goed)
+      * [Wat werkte niet](#wat-werkte-niet)
+6.  [Conclusie](#6-conclusie)
+7.  [Bronvermelding](#7-bronvermelding)
+      * [Literatuur/Websites](#literatuurwebsites)
+      * [Gebruik van generatieve AI (GenAI)](#gebruik-van-generatieve-ai-genai)
+-----
 
 ## 1. Inleiding
 
@@ -107,13 +125,13 @@ IO.inspect(Math.sum([1, 2, 3, 4])) # => 10
 
 ## 3. Challenge
 
-### Beschrijving van de Bedachte Challenge
-In deze challenge moet zal ik een Dijkstra pathfinding algoritme implementeren. Het doel is om het kortste pad te vinden in een grote, mogelijk oneindige graaf.
+### Beschrijving van de bedachte challenge
+In deze challenge zal ik een Dijkstra pathfinding algoritme implementeren. Het doel is om het kortste pad te vinden in een grote, mogelijk oneindige graaf.
 
-### Waarom de Challenge Uitdagend Is
+### Waarom de challenge uitdagend Is
 De challenge is uitdagend om de volgende redenen:
 
-#### Focus op Functionele Concepten:
+#### Focus op functionele concepten:
 
 Deze challenge vereist dat ik meerdere kernconcepten uit functionele programmering toepas.
 
@@ -145,9 +163,9 @@ Daarnaast heb ik geprobeerd een priority queue te gebruiken, aangezien dit een e
 
 In de opdracht wordt verwezen naar lazy evaluation, maar het Dijkstra-algoritme staat juist bekend als een eager algoritme. Om het kortste pad te bepalen moeten uiteindelijk alle knopen zijn bezocht. Daarom heb ik het algoritme bewust eager uitgewerkt.
 
-### Gebruikte Functionele Concepten
+### Gebruikte functionele concepten
 
-#### Pattern Matching
+#### Pattern matching
 
 Pattern matching wordt gebruikt om direct te onderscheiden tussen de base case en de recursieve case. Daarnaast maakt het de code compacter door direct tuples te kunnen “uitpakken”.
 
@@ -193,7 +211,7 @@ Met Enum.reduce/3 wordt er een lijst buren verwerkt. Elke buur wordt verwerkt in
 
 
 ## 5. Reflectie
-Mijn belangrijkste leerpunten over het functionele paradigma zijn:
+Mijn belangrijkste leerpunten van het functionele paradigma zijn:
 
 ### Denkwijze:
 De functionele manier van programmeren dwingt je om anders te denken dan bij imperatief of objectgeoriënteerd programmeren. In plaats van “stap voor stap” code te schrijven die variabelen muteert, werk je met pure functies die onveranderlijke data transformeren. Dit betekende voor mij dat ik continu moest nadenken over data doorgeven en teruggeven in plaats van data aanpassen.
@@ -206,36 +224,60 @@ De functionele manier van programmeren dwingt je om anders te denken dan bij imp
 #### Uitdagingen:
 Het lastigste vond ik het wennen aan recursie in plaats van loops. Waar ik normaal een for- of while-loop zou schrijven, moest ik nu de oplossing opdelen in een base case en een recursieve case. 
 
-### Wat Werkte Goed
+### Wat werkte goed
 
 Het gebruik van Enum.reduce werkte erg goed om over de buren van een knoop heen te lopen. Het combineerde de update van de afstanden en de queue op een nette manier in één pure functie. Daardoor bleef de code overzichtelijk en was duidelijk hoe de datastructuren transformeerden bij elke stap van het algoritme.
 
-### Wat Werkte Niet
+### Wat werkte niet
 
-Het lastigste onderdeel was het implementeren van een priority queue in Elixir. In een imperatieve taal zou je gewoon een heap of een ingebouwde datastructuur gebruiken, maar in functioneel Elixir moest ik een manier vinden om de queue telkens als nieuwe lijst of tuple bij te werken zonder mutatie. Waar ik normaal een eenvoudige while (queue not empty) zou schrijven, moest ik nu leren denken in termen van herhaalde functie aanroepen met aangepaste argumenten. 
+Het lastigste onderdeel was het implementeren van een priority queue in Elixir. In een imperatieve taal zou je gewoon een ingebouwde datastructuur gebruiken, maar in functioneel Elixir moest ik een manier vinden om de queue telkens als nieuwe lijst of tuple bij te werken zonder mutatie. Waar ik normaal een eenvoudige while (queue not empty) zou schrijven, moest ik nu leren denken in termen van herhaalde functie aanroepen met aangepaste argumenten. 
+
+
+
+## 6. Conclusie
+Na het grootste gedeelte van mijn schoolcarrière in imperatieve talen te hebben gewerkt, was het verfrissend om een volledig ander paradigma te verkennen. Niet alleen waren de spelregels totaal anders, ook mijn manier van denken moest ik aanpassen. Veel constructies die ik normaal gesproken vanzelfsprekend vond, bleken in een functionele taal niet te werken.
+
+Wat mij vooral is bijgebleven, is dat immutability de code voorspelbaarder en betrouwbaarder maakt en dat pure functies eenvoudiger te testen zijn, omdat de output uitsluitend afhankelijk is van de input. Ook recursie was een belangrijk leerpunt, in plaats van vertrouwde loops moest ik problemen opdelen in een base case en een recursieve case, wat in het begin wennen was maar uiteindelijk leerzaam bleek. Het meest krachtige concept vond ik pattern matching. Daarmee kon ik logica op een overzichtelijke manier structureren zonder if-else constructies, iets dat de leesbaarheid van de code sterk verbeterde.
+
+Hoewel ik waarschijnlijk Elixir zelf niet vaak in mijn carrière zal gebruiken, heeft de opdracht mijn manier van denken verbreed. De inzichten die ik heb opgedaan, zoals het werken met pure functies, immutability en pattern matching. Zijn waardevol en kan ik ook toepassen in imperatieve talen zoals Java. Het ontdekken dat Java in beperkte mate ook pattern matching ondersteunt, bijvoorbeeld via method overloading, laat zien dat de opgedane kennis niet alleen relevant blijft voor deze opdracht maar ook voor toekomstige projecten.
+
 
 ## 7. Bronvermelding
 
-
 ### Literatuur/Websites
-[Is elixir still worth learning](https://www.reddit.com/r/elixir/comments/1bi3ibi/is_elixir_still_worth_learning/)
 
-[Why im still betting on elixir in 2025](https://medium.com/beamworld/why-im-still-betting-on-elixir-in-2025-2ca26d4c52b4)
+Barion, M. (2025). Lesprogramma: Les 2 | Algoritmes, Paradigma’s en Programmeertalen: Grafen en paden [Cursusmateriaal]. HAN University of Applied Sciences. https://aim-cni.github.io/app/docs/Week%203/Les%202/Lesprogramma
 
-### Gebruik van Generatieve AI (GenAI)
-**Tool:** ChatGPT 5
+coding guy. (2025, 11 januari). *Why I'm Still Betting on Elixir in 2025*. beamworld on Medium. Geraadpleegd op 20-09-2025 [https://medium.com/beamworld/why-im-still-betting-on-elixir-in-2025-2ca26d4c52b4](https://medium.com/beamworld/why-im-still-betting-on-elixir-in-2025-2ca26d4c52b4)
 
-**Doel van Gebruik:** 
-Om snelle informatie te verkrijgen over de verschillende talen. En om uiteindelijk meer informatie te krijgen over Elixir zelf en functioneel programmeren
+Elixir (programming language). (2025, 21 mei). In *Wikipedia*. Geraadpleegd op 1 oktober 2025, van [https://en.wikipedia.org/wiki/Elixir](https://en.wikipedia.org/wiki/Elixir)\_(programming\_language)
 
-**Verantwoording & Analyse van Output:** 
-Door bijbehorende bronnen op te vragen van betrouwbare sites / auteurs zo kon ik de informatie achterhalen die in de output verwerkt zit. Chatgpt vervulde eigenlijk alleen een samenvattende rol.
+Elixir. (n.d.). *Atom* (v1.18.4). Geraadpleegd op 21-09-2025 [https://hexdocs.pm/elixir/1.18.4/Atom.html](https://hexdocs.pm/elixir/1.18.4/Atom.html)
+
+Mahoney, M. (2025, 22 mei). An Animated Introduction to Elixir. freeCodeCamp.org. https://www.freecodecamp.org/news/an-animated-introduction-to-elixir
+
+Sakhi, S. (2022, 2 juli). The Elixir Language: a Features Summary. Simply-How. https://simply-how.com/elixir-lang
+
+r/elixir. (n.d.). *Is Elixir still worth learning* [Online forumpost]. Reddit. Geraadpleegd op 20-09-2025[https://www.reddit.com/r/elixir/comments/1bi3ibi/is_elixir_still_worth_learning/](https://www.reddit.com/r/elixir/comments/1bi3ibi/is_elixir_still_worth_learning/)
+
+Wikipedia-bijdragers. (n.d.). *Kortstepad-algoritme*. In *Wikipedia*. Geraadpleegd op 28-09-2025[https://nl.wikipedia.org/wiki/Kortstepad-algoritme](https://nl.wikipedia.org/wiki/Kortstepad-algoritme)
+
+
+### Gebruik van generatieve AI (GenAI)
+**Tool:** ChatGPT 5 & Gemini 2.5 Flash
+
+**Doelstelling van het Gebruik**
+Het doel van de AI-Tool was het snel verzamelen van informatie over diverse programmeertalen. Dit ter onderbouwing van de analyse van Elixir en Functioneel Programmeren, Daarnaast ook voor het direct beantwoorden van specifieke vragen, tijdens de uitwerking.
+
+**Verantwoording & Analyse van de Output**
+De informatie in de output is gebaseerd op bronnen van betrouwbare sites en auteurs, of is getoetst met eigen kennis. De AI-tool werd puur ingezet voor ondersteunende taken (bijvoorbeeld tekstsamenvatting of genereren van eenvoudige codefragmenten) die geen directe inhoudelijke bijdrage leveren aan de opdracht.
 
 **Conversatielinks:**
 
 [Link naar gesprek over het kiezen van de beste taal](https://chatgpt.com/share/68dbc0a9-e970-8007-833b-d84db4514d25)
 
-[link naar gesprek over het maken van een adjecent list](https://chatgpt.com/share/68dbc288-0344-8007-b5f1-1bedc7749999)
+[Link naar gesprek over het maken van een adjecent list](https://chatgpt.com/share/68dbc288-0344-8007-b5f1-1bedc7749999)
 
 [Link naar gesprek over functionele concepten](https://chatgpt.com/share/68dbc465-d204-8007-85eb-709c25a82401)
 
+[Link naar gesprek console print optimalisatie](https://g.co/gemini/share/9f88f44e4c23)
