@@ -10,7 +10,7 @@
 | :--- | :--- |
 | **student Nummer:** | 650002 |
 | **Course:** | APP |
-| **Datum:** | 29-09-2025 |
+| **Datum:** | 03-10-2025 |
 | **Docent:** | Dennis Breuker |
 | **Versie:** | 1           |
 
@@ -22,7 +22,7 @@
       * [Gekozen programmeertaal](#gekozen-programmeertaal)
 2.  [Onderzoek](#2-onderzoek)
       * [Functionele concepten en kenmerken van elixir](#functionele-concepten-en-kenmerken-van-elixir)
-          * [Pure functions](#pure-functies)
+          * [Pure functions](#pure-functions)
           * [Immutability](#immutability)
           * [Higher order functions](#higher-order-functions)
           * [Recursie](#recursie)
@@ -35,7 +35,7 @@
           * [Pattern matching](#pattern-matching-1)
           * [Recursie](#recursie-1)
           * [Immutability](#immutability-1)
-          * [Higher order functions](#higher-order-functies)
+          * [Higher order functions](#higher-order-functions)
 5.  [Reflectie](#5-reflectie)
       * [Denkwijze](#denkwijze)
       * [Wat werkte goed](#wat-werkte-goed)
@@ -60,7 +60,7 @@ Daarnaast is Elixir relatief makkelijk op te pakken volgens bronnen in vergelijk
 
 Verder is Elixir een uitstekende keuze om functionele concepten te ontdekken en te leren. De taal biedt namelijk een aantal concepten die ik erg interessant vind:
 - Immutability: ik heb deze term al eerder gehoord, maar nog niet gewerkt met een taal waarin alles immutable is.
-- Recursie: dit concept is meerdere keren voorbij gekomen in de lessen. Het is erg interessant omdat het een compleet andere manier van denken vereist. In Elixir kun je wel for-loops gebruiken, dus het is niet puur functioneel, maar ik blijf in deze opdracht bij de recursieve aanpak.
+- Recursie: dit concept is meerdere keren voorbij gekomen in de lessen. Het is erg interessant omdat het een compleet andere manier van denken vereist. In Elixir kun je wel for loops gebruiken, dus het is niet puur functioneel, maar ik blijf in deze opdracht bij de recursieve aanpak.
 - Pattern matching: dit concept wekt mijn grootste interesse, omdat het volledig nieuw voor mij is. Ik wil het graag actief toepassen in mijn code.
 
 
@@ -71,7 +71,7 @@ Deze sectie behandelt de theoretische concepten en functionaliteiten van Elixir.
 
 #### Pure functions
 ook wel functies genoemd die geen bijwerkingen hebben(side effects)
-Idealiter zijn functies “puur” dat betekent gegeven dezelfde input geven ze altijd dezelfde output en beïnvloeden ze geen externe toestand. In de praktijk voert je code soms side effects uit 
+Idealiter zijn functies “puur” dat betekent gegeven dezelfde input geven ze altijd dezelfde output en beïnvloeden ze geen externe toestand. 
 
 #### Immutability
 In Elixir zijn waarden standaard immutable. Dat betekent dat je een variabele niet kunt aanpassen nadat deze is aangemaakt. In plaats daarvan maak je altijd een nieuwe waarde als je iets wilt veranderen. Dit helpt fouten te voorkomen en maakt je programma’s betrouwbaarder, omdat je zeker weet dat data niet onverwacht wordt overschreven. Dit maakt het gedrag in Elixir voorspelbaar.
@@ -124,7 +124,7 @@ IO.inspect(Math.sum([1, 2, 3, 4])) # => 10
 ## 3. Challenge
 
 ### Beschrijving van de bedachte challenge
-In deze challenge zal ik een Dijkstra pathfinding algoritme implementeren. Het doel is om het kortste pad te vinden in graph.
+In deze challenge zal ik een Dijkstra pathfinding algoritme implementeren. Het doel is om het kortste pad te vinden in een graph.
 
 ### Waarom de challenge uitdagend Is
 De challenge is uitdagend om de volgende redenen:
