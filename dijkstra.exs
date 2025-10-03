@@ -50,6 +50,9 @@ defmodule ShortestPath do
 end
 
 # een map met atoms (labels) als key
+# Kan als een directional graph opgezet worden
+
+
 # graph = %{
 #   a: [b: 5, c: 2],
 #   b: [d: 4],
